@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IPVPN Quality Dashboard</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/theme.css">
+  <!-- External libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+<body>
+  <header class="main-header">
+    <div class="header-content">
+      <h1>IPVPN Quality Dashboard</h1>
+      <div class="logo-container">
+        <div class="company-logo">VODAFONE</div>
+      </div>
+    </div>
+  </header>
+  
+  <nav class="main-nav">
+    <div class="nav-container">
+      <a href="index.html" class="nav-link active" data-page="upload">Uploads</a>
+      <a href="report.html" class="nav-link" data-page="report">Reports</a>
+      <a href="settings.html" class="nav-link" data-page="settings">Settings</a>
+    </div>
+  </nav>
+
+  <main class="container">
+    <section class="card upload-card" id="upload-section">
+      <h2 class="section-title">Upload IPVPN Reports</h2>
+      <div class="upload-grid">
+        <div class="upload-item">
+          <h3>Latency Report</h3>
+          <div class="file-input-container">
+            <input type="file" id="latencyFile" class="file-input" accept=".csv,.xls,.xlsx">
+            <label for="latencyFile" class="file-label">
+              <span class="file-icon">📁</span>
+              <span class="file-text">Choose file</span>
+            </label>
+          </div>
+          <div class="file-status" id="latency-status"></div>
+        </div>
+        
+        <div class="upload-item">
+          <h3>Packet Loss Report</h3>
+          <div class="file-input-container">
+            <input type="file" id="lossFile" class="file-input" accept=".csv,.xls,.xlsx">
+            <label for="lossFile" class="file-label">
+              <span class="file-icon">📁</span>
+              <span class="file-text">Choose file</span>
+            </label>
+          </div>
+          <div class="file-status" id="loss-status"></div>
+        </div>
+        
+        <div class="upload-item">
+          <h3>Link Mapping</h3>
+          <div class="file-input-container">
+            <input type="file" id="mappingFile" class="file-input" accept=".csv,.xls,.xlsx">
+            <label for="mappingFile" class="file-label">
+              <span class="file-icon">📁</span>
+              <span class="file-text">Choose file</span>
+            </label>
+          </div>
+          <div class="file-status" id="mapping-status"></div>
+        </div>
+      </div>
+      
+      <div class="button-group">
+        <button id="clearDataBtn" class="btn btn-danger">
+          <span class="btn-icon">🗑️</span> Clear All Data
+        </button>
+        <button id="processBtn" class="btn btn-primary">
+          <span class="btn-icon">⚙️</span> Process Data
+        </button>
+      </div>
+      
+      <div id="status-message" class="status-message"></div>
+    </section>
+
+    <section class="card" id="latencyCard" style="display:none;">
+      <div class="card-header">
+        <h2 class="section-title">Average Latency (ms) per Link</h2>
+        <div class="card-tools">
+          <button id="latencyFilterBtn" class="btn btn-sm btn-outline">
+            <span class="btn-icon">🔍</span> Filter
+          </button>
+          <button id="latencySortBtn" class="btn btn-sm btn-outline">
+            <span class="btn-icon">↕️</span> Sort
+          </button>
+        </div>
+      </div>
+      <div class="table-container">
+        <table class="data-table" id="latencyTable">
+          <thead>
+            <tr>
+              <th>Link</th>
+              <th>Province</th>
+              <th>Avg. Latency (ms)</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="latencyBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card" id="lossCard" style="display:none;">
+      <div class="card-header">
+        <h2 class="section-title">Average Packet Loss (%) per Link</h2>
+        <div class="card-tools">
+          <button id="lossFilterBtn" class="btn btn-sm btn-outline">
+            <span class="btn-icon">🔍</span> Filter
+          </button>
+          <button id="lossSortBtn" class="btn btn-sm btn-outline">
+            <span class="btn-icon">↕️</span> Sort
+          </button>
+        </div>
+      </div>
+      <div class="table-container">
+        <table class="data-table" id="lossTable">
+          <thead>
+            <tr>
+              <th>Link</th>
+              <th>Province</th>
+              <th>Avg. Loss (%)</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="lossBody"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="main-footer">
+    <p>&copy; 2025 IPVPN Dashboard</p>
+  </footer>
+
+  <script src="js/storage-manager.js"></script>
+  <script src="js/data-processor.js"></script>
+  <script src="js/ui-manager.js"></script>
+  <script src="js/index.js"></script>
+</body>
+</html>

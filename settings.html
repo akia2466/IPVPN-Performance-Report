@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IPVPN Settings</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/theme.css">
+</head>
+<body>
+  <header class="main-header">
+    <div class="header-content">
+      <h1>IPVPN Settings</h1>
+      <div class="logo-container">
+        <div class="company-logo">VODAFONE</div>
+      </div>
+    </div>
+  </header>
+  
+  <nav class="main-nav">
+    <div class="nav-container">
+      <a href="index.html" class="nav-link" data-page="upload">Uploads</a>
+      <a href="report.html" class="nav-link" data-page="report">Reports</a>
+      <a href="settings.html" class="nav-link active" data-page="settings">Settings</a>
+    </div>
+  </nav>
+
+  <main class="container">
+    <section class="card">
+      <div class="card-header">
+        <h2 class="section-title">Performance Thresholds</h2>
+      </div>
+      <form id="thresholdForm" class="settings-form">
+        <div class="form-group">
+          <label for="criticalThreshold" class="form-label">Critical Threshold (%):</label>
+          <input type="number" id="criticalThreshold" class="form-control" min="0" max="100" value="75">
+          <p class="form-hint">Performance below this value will be marked as Critical</p>
+        </div>
+        
+        <div class="form-group">
+          <label for="warningThreshold" class="form-label">Warning Threshold (%):</label>
+          <input type="number" id="warningThreshold" class="form-control" min="0" max="100" value="85">
+          <p class="form-hint">Performance below this value will be marked as Warning</p>
+        </div>
+        
+        <div class="form-group">
+          <label for="latencyWeight" class="form-label">Latency Weight (%):</label>
+          <input type="number" id="latencyWeight" class="form-control" min="0" max="100" value="50">
+          <p class="form-hint">Weight of latency in overall performance calculation</p>
+        </div>
+        
+        <div class="form-group">
+          <label for="lossWeight" class="form-label">Packet Loss Weight (%):</label>
+          <input type="number" id="lossWeight" class="form-control" min="0" max="100" value="50">
+          <p class="form-hint">Weight of packet loss in overall performance calculation</p>
+        </div>
+      </form>
+    </section>
+
+    <section class="card">
+      <div class="card-header">
+        <h2 class="section-title">Display Settings</h2>
+      </div>
+      <form id="displayForm" class="settings-form">
+        <div class="form-group">
+          <label class="form-label">Theme:</label>
+          <div class="radio-group">
+            <label class="radio-label">
+              <input type="radio" name="theme" value="light" checked> Light
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="theme" value="dark"> Dark
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="theme" value="system"> System
+            </label>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="rowsPerPage" class="form-label">Rows Per Page:</label>
+          <select id="rowsPerPage" class="form-control">
+            <option value="10">10</option>
+            <option value="25" selected>25</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Default Columns:</label>
+          <div class="checkbox-group">
+            <label class="checkbox-label">
+              <input type="checkbox" name="columns" value="link" checked disabled> Link
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" name="columns" value="province" checked> Province
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" name="columns" value="latency" checked> Latency
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" name="columns" value="loss" checked> Packet Loss
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" name="columns" value="performance" checked> Performance
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" name="columns" value="status" checked> Status
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" name="columns" value="comments" checked> Comments
+            </label>
+          </div>
+        </div>
+      </form>
+    </section>
+
+    <section class="card">
+      <div class="card-header">
+        <h2 class="section-title">Save Settings</h2>
+      </div>
+      <div class="button-group">
+        <button id="saveSettingsBtn" class="btn btn-primary">
+          <span class="btn-icon">💾</span> Save Settings
+        </button>
+        <button id="resetSettingsBtn" class="btn btn-danger">
+          <span class="btn-icon">🔄</span> Reset to Defaults
+        </button>
+      </div>
+      <div id="settings-message" class="status-message"></div>
+    </section>
+  </main>
+
+  <footer class="main-footer">
+    <p>&copy; 2025 IPVPN Dashboard</p>
+  </footer>
+
+  <script src="js/storage-manager.js"></script>
+  <script src="js/settings.js"></script>
+</body>
+</html>
